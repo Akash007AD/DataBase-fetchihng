@@ -1,34 +1,19 @@
-
-/*
 import { Router } from 'express';
 import {
     addStock,
     getStockDetails,
-} from "../controllers/stock.controller.js"
-//import { verifyJWT } from "../middlewares/auth.middleware.js"
-
-const router = Router();
-
-//router.use(verifyJWT); 
-router.route("/:productId")
-    .get(getStockDetails)
-    .post(addStock);
-
-
-export default router;
-*/
-
-import { Router } from 'express';
-import {
-    addStock,
-    getStockDetails,
+    getAllStock,  // Import the new controller function
 } from "../controllers/stock.controller.js";
 
 const router = Router();
 
-// Routes to handle adding a new stock item and getting stock details by `product_id`
+// Route to get all stock items
+router.route("/")
+    .get(getAllStock)  // Add this line to fetch all stock items
+    .post(addStock);   // Existing route to add a new stock item
+
+// Route to get stock details by `productId`
 router.route("/:productId")
-    .get(getStockDetails)
-    .post(addStock);
+    .get(getStockDetails);
 
 export default router;
